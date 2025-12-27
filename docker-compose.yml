@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   single-mysql:
-    image: mysql:8.4
+    image: mysql:8.0
     container_name: txlab-single-mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
@@ -12,13 +12,13 @@ services:
     volumes:
       - ./docker/init/single/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -prootpass"]
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -prootpass" ]
       interval: 5s
       timeout: 5s
       retries: 10
 
   core-mysql:
-    image: mysql:8.4
+    image: mysql:8.0
     container_name: txlab-core-mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
@@ -29,13 +29,13 @@ services:
     volumes:
       - ./docker/init/dual/core-init.sql:/docker-entrypoint-initdb.d/core-init.sql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -prootpass"]
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -prootpass" ]
       interval: 5s
       timeout: 5s
       retries: 10
 
   audit-mysql:
-    image: mysql:8.4
+    image: mysql:8.0
     container_name: txlab-audit-mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
@@ -46,7 +46,7 @@ services:
     volumes:
       - ./docker/init/dual/audit-init.sql:/docker-entrypoint-initdb.d/audit-init.sql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -prootpass"]
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -prootpass" ]
       interval: 5s
       timeout: 5s
       retries: 10
